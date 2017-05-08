@@ -1,21 +1,18 @@
 'use strict';
 
-
 const Code = require('code');
 const Lab = require('lab');
 const Manager = require('../lib/index.js');
 
 // Fixtures
-
-
+const Utils = require('./utils');
 
 // Set-up lab
 const lab = exports.lab = Lab.script();
 const describe = lab.describe;
 const it = lab.it;
 const expect = Code.expect;
-// const afterEach = lab.afterEach;
-// const beforeEach = lab.beforeEach;
+
 
 describe('Manager', () => {
 
@@ -30,14 +27,18 @@ describe('Manager', () => {
 
     });
 
-    it('should construct manager object', (done) => {
+    it('should construct manager object with valid options', (done) => {
 
-        const manager = new Manager({
-            
-        });
+        const options = Utils.getOpts();
+        const manager = new Manager(options);
         expect(manager).to.be.an.object();
-        done();
+        manager.connect((err) => {
 
+            expect(err).to.not.exist();
+            manager.close(done);
+        });
     });
+
+
 
 });
