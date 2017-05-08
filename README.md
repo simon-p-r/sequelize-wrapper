@@ -1,4 +1,6 @@
 # sequelize-wrapper
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/simon-p-r/sequelize-wrapper.svg)](https://greenkeeper.io/)
 [![build status](https://travis-ci.org/simon-p-r/sequelize-wrapper.svg?branch=master)](https://travis-ci.org/simon-p-r/sequelize-wrapper)
 [![Current Version](https://img.shields.io/npm/v/sequelize-wrapper.svg?maxAge=1000)](https://www.npmjs.com/package/sequelize-wrapper)
 [![dependency Status](https://img.shields.io/david/simon-p-r/sequelize-wrapper.svg?maxAge=1000)](https://david-dm.org/simon-p-r/sequelize-wrapper)
