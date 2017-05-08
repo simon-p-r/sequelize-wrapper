@@ -1,0 +1,29 @@
+{
+  "name": "sequelize-wrapper",
+  "version": "0.0.1",
+  "description": "sql models",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "coveralls": "lab -r lcov | coveralls",
+    "test": "lab -a code -v -t 100 -L"
+  },
+  "keywords": [
+    "sql",
+    "models"
+  ],
+  "author": "simon-p-r",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "code": "^4.0.0",
+    "coveralls": "^2.13.1",
+    "lab": "^13.0.4"
+  },
+  "dependencies": {
+    "joi": "^10.4.1",
+    "neo-async": "^2.1.0",
+    "sequelize": "^3.30.4"
+  }
+}

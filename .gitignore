@@ -1,0 +1,7 @@
+node_modules
+*.log
+test.js
+scripts/
+.vs
+.idea
+.vscode
