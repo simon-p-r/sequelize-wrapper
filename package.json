@@ -1,6 +1,6 @@
 {
   "name": "sequelize-wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "sql models",
   "main": "lib/index.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "coveralls": "lab -r lcov | coveralls",
-    "test": "lab -a code -v -t 80 -L"
+    "test": "lab -a code -v -t 80 -L -m 4000"
   },
   "keywords": [
     "sql",

@@ -8,10 +8,10 @@ exports.getOpts = () => {
             host: 'localhost',
             port: 5432,
             username: 'postgres',
-            password: 'Luca2010',
+            password: process.env.DB_PASSWORD,
             dialect: 'postgres',
             logging: false,
-            sync: false,
+            sync: true,
             pool: {
                 max: 5,
                 min: 0,
@@ -19,69 +19,26 @@ exports.getOpts = () => {
             }
         },
         dbs: {
-            test_demo: {
+            test_db: {
                 tables: {
-                    user: {
-                        name: {
-                            type: 'text'
-                        },
-                        surname: {
-                            type: 'text'
-                        },
-                        age: {
-                            type: 'integer'
-                        },
-                        street: {
-                            type: 'text'
-                        },
-                        city: {
-                            type: 'text'
-                        },
-                        postal_code: {
-                            type: 'text'
-                        }
-                    },
                     product: {
-                        id: {
-                            type: 'integer',
-                            primaryKey: true
-                        },
-                        name: {
-                            type: 'text'
-                        }
-                        // price: {
-                        //     type: 'decimal'
-                        // }
-                    }
-                }
-            },
-            aim_ops_db: {
-                tables: {
-                    country: {
                         name: {
                             type: 'text',
                             primaryKey: true
                         },
-                        population: {
-                            type: 'integer'
-                        }
-                    },
-                    state: {
-                        name: {
-                            type: 'text',
-                            primaryKey: true
+                        price: {
+                            type: 'decimal'
                         },
-                        population: {
+                        quantity: {
                             type: 'integer'
                         },
-                        // longitutde: {
-                        //     type: 'double'
-                        // },
-                        // latitude: {
-                        //     type: 'double'
-                        // },
-                        country: {
-                            type: 'text'
+                        xx_created_dt: {
+                            type: 'datetime',
+                            timestamp: true
+                        },
+                        xx_modified_dt: {
+                            type: 'datetime',
+                            timestamp: true
                         }
                     }
                 }
@@ -90,3 +47,25 @@ exports.getOpts = () => {
     };
 };
 
+exports.records = [
+    {
+        name: 'Battery',
+        price: 19.99,
+        quantity: 1000
+    },
+    {
+        name: 'Keyboard',
+        price: 19.99,
+        quantity: 500
+    },
+    {
+        name: 'CPU',
+        price: 199.99,
+        quantity: 45
+    },
+    {
+        name: 'LED',
+        price: 4.99,
+        quantity: 15000
+    }
+];

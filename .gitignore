@@ -5,3 +5,4 @@ scripts/
 .vs
 .idea
 .vscode
+env.cmd
