@@ -8,7 +8,7 @@ exports.getOpts = () => {
             host: 'localhost',
             port: 5432,
             username: 'postgres',
-            password: process.env.DB_PASSWORD,
+            password: process.env.PGPASSWORD,
             dialect: 'postgres',
             logging: false,
             sync: true,
@@ -24,7 +24,8 @@ exports.getOpts = () => {
                     product: {
                         name: {
                             type: 'text',
-                            primaryKey: true
+                            primaryKey: true,
+                            length: 255
                         },
                         price: {
                             type: 'decimal'
@@ -39,6 +40,44 @@ exports.getOpts = () => {
                         xx_modified_dt: {
                             type: 'datetime',
                             timestamp: true
+                        }
+                    }
+                }
+            },
+            test_db2: {
+                tables: {
+                    country: {
+                        name: {
+                            type: 'text',
+                            primaryKey: true
+                        },
+                        capital_city: {
+                            type: 'string'
+                        },
+                        language: {
+                            type: 'string',
+                            length: 255,
+                            allowNull: true
+                        },
+                        timezone: {
+                            type: 'datetime',
+                            length: 2
+                        },
+                        latitude: {
+                            type: 'double'
+                        },
+                        longitude: {
+                            type: 'double'
+                        },
+                        eu_member:{
+                            type: 'boolean'
+                        },
+                        pop_density_percent: {
+                            type: 'float'
+                        },
+                        counter: {
+                            type: 'integer',
+                            autoIncrement: true
                         }
                     }
                 }

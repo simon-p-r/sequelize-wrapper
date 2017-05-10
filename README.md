@@ -41,15 +41,17 @@ options object must contain the following properties
 + .dbs[dbName].tables[modelName].insertOne(record, options, cb); - callback wrapped for Sequelize create method
 + .dbs[dbName].tables[modelName].insertMany(records, options, cb); - callback wrapped for Sequelize bulkCreate method
 + .dbs[dbName].tables[modelName].deleteMany(options, cb); - callback wrapped for Sequelize destroy method
-+ .dbs[dbName].tables[modelName].deleteOne(options, cb); - callback wrapped for Sequelize destroy method with limit set to 1
+<!--+ .dbs[dbName].tables[modelName].deleteOne(options, cb); - callback wrapped for Sequelize destroy method with limit set to 1-->
 + .dbs[dbName].tables[modelName].deleteById(options, cb); - callback wrapped for Sequelize destroy method with where query for id set
-+ .dbs[dbName].tables[modelName].updateOne(record, options, cb); - callback wrapped for Sequelize update method with limit set to 1
+<!--+ .dbs[dbName].tables[modelName].updateOne(record, options, cb); - callback wrapped for Sequelize update method with limit set to 1-->
 + .dbs[dbName].tables[modelName].updateMany(records, options, cb); - callback wrapped for Sequelize update method with where query for id set
++ .dbs[dbName].tables[modelName].drop(options, cb); - callback wrapped for Sequelize drop method, this will destroy the table completely
 
 #### Todo
-+ add tests
++ ~~add tests~~
 + add CI with travis and appveyor
 + improve docs
 + clean up functionality
++ improve method validation
 
 

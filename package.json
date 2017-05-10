@@ -1,6 +1,6 @@
 {
   "name": "sequelize-wrapper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "sql models",
   "main": "lib/index.js",
   "directories": {
@@ -8,6 +8,8 @@
   },
   "scripts": {
     "coveralls": "lab -r lcov | coveralls",
+    "pretest": "echo create database test_db2 | psql -U postgres",
+    "posttest": "echo drop database test_db; drop database test_db2; | psql -U postgres",
     "test": "lab -a code -v -t 80 -L -m 4000"
   },
   "keywords": [

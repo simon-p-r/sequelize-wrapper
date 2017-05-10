@@ -55,6 +55,20 @@ describe('Manager', () => {
 
     });
 
+    it('should return an error on connect method due to invalid database', (done) => {
+
+        const options = Utils.getOpts();
+        options.dbOpts.host = 'invalid';
+        const mgr = new Manager(options);
+
+        mgr.connect((err) => {
+
+            expect(err).to.exist();
+            done();
+        });
+    });
+
+
 
     it('should succeed when using insertOne method', (done) => {
 
@@ -137,10 +151,10 @@ describe('Manager', () => {
         });
     });
 
-    it('should succeed when using updated method', (done) => {
+    it('should succeed when using updatMany method', (done) => {
 
         const table = manager.dbs.test_db.tables.product;
-        table.update({ quantity: 1000 }, { where: { price: 19.99 } }, (err, updated) => {
+        table.updateMany({ quantity: 1000 }, { where: { price: 19.99 } }, (err, updated) => {
 
             expect(err).to.not.exist();
             expect(updated[0]).to.be.a.number();
