@@ -1,0 +1,28 @@
+platform:
+  - x64
+
+services:
+  - mssql2008r2sp2
+
+cache:
+  - node_modules
+
+environment:
+  matrix:
+    - {NODE_VERSION: 4, DIALECT: mssql}
+    - {NODE_VERSION: 6, DIALECT: mssql}
+
+install:
+  - ps: Install-Product node $env:NODE_VERSION x64
+  - npm install
+
+build: off
+
+before_test:
+  - ps: . .\scripts\appveyor-setup.ps1
+
+test_script:
+  - npm run test-mssql
+
+after_test:
+  - npm run coveralls

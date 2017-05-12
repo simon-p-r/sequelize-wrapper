@@ -1,6 +1,6 @@
 {
   "name": "sequelize-wrapper",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "sql models",
   "main": "lib/index.js",
   "directories": {
@@ -10,6 +10,8 @@
     "coveralls": "lab -r lcov | coveralls",
     "pretest": "echo create database test_db2 | psql -U postgres",
     "posttest": "echo drop database test_db; drop database test_db2; | psql -U postgres",
+    "test-pgsql": "cross-env DIALECT=postgres npm test",
+    "test-mssql": "cross-env DIALECT=mssql npm test",
     "test": "lab -a code -v -t 80 -L -m 4000"
   },
   "keywords": [
@@ -21,11 +23,14 @@
   "devDependencies": {
     "code": "^4.0.0",
     "coveralls": "^2.13.1",
-    "lab": "^13.0.4"
+    "cross-env": "^5.0.0",
+    "lab": "^13.0.4",
+    "pg": "^6.1.5"
   },
   "dependencies": {
     "joi": "^10.4.1",
     "neo-async": "^2.1.0",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "tedious": "^2.0.0"
   }
 }

@@ -8,10 +8,9 @@ exports.getOpts = () => {
             host: 'localhost',
             port: 5432,
             username: 'postgres',
-            password: process.env.PGPASSWORD,
+            password: 'admin',
             dialect: 'postgres',
             logging: false,
-            sync: true,
             pool: {
                 max: 5,
                 min: 0,
@@ -86,25 +85,4 @@ exports.getOpts = () => {
     };
 };
 
-exports.records = [
-    {
-        name: 'Battery',
-        price: 19.99,
-        quantity: 1000
-    },
-    {
-        name: 'Keyboard',
-        price: 19.99,
-        quantity: 500
-    },
-    {
-        name: 'CPU',
-        price: 199.99,
-        quantity: 45
-    },
-    {
-        name: 'LED',
-        price: 4.99,
-        quantity: 15000
-    }
-];
+

@@ -1,0 +1,79 @@
+{
+    "dbOpts": {
+        "password": "",
+        "dialect": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "pool": {
+            "min": 0,
+            "idle": 10000,
+            "max": 5
+        },
+        "username": "postgres"
+    },
+    "dbs": {
+        "test_db": {
+            "tables": {
+                "product": {
+                    "price": {
+                        "type": "decimal"
+                    },
+                    "xx_modified_dt": {
+                        "timestamp": true,
+                        "type": "datetime"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "primaryKey": true,
+                        "type": "string",
+                        "length": 255
+                    },
+                    "xx_created_dt": {
+                        "timestamp": true,
+                        "type": "datetime"
+                    }
+                }
+            }
+        },
+        "test_db2": {
+            "tables": {
+                "country": {
+                    "capital_city": {
+                        "type": "text"
+                    },
+                    "longitude": {
+                        "type": "double"
+                    },
+                    "timezone": {
+                        "type": "datetime",
+                        "length": 2
+                    },
+                    "pop_density_percent": {
+                        "type": "float"
+                    },
+                    "name": {
+                        "type": "string",
+                        "primaryKey": true
+                    },
+                    "eu_member": {
+                        "type": "boolean"
+                    },
+                    "counter": {
+                        "type": "integer",
+                        "autoIncrement": true
+                    },
+                    "language": {
+                        "allowNull": true,
+                        "type": "string",
+                        "length": 255
+                    },
+                    "latitude": {
+                        "type": "double"
+                    }
+                }
+            }
+        }
+    }
+}

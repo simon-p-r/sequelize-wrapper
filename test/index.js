@@ -4,8 +4,24 @@ const Code = require('code');
 const Lab = require('lab');
 const Manager = require('../lib/index.js');
 
-// Fixtures
 const Utils = require('./utils');
+
+// Fixtures
+const Config = {};
+if (process.env.DIALECT === 'postgres') {
+    Config.options = require('./config/pgsql.json');
+}
+else if (process.env.DIALECT === 'mssql') {
+    Config.options = require('./config/mssql.json');
+}
+else {
+    Config.options = Utils.getOpts();
+}
+
+Config.options.dbOpts.logging = false;
+
+const Data = require('./data/array');
+
 
 // Set-up lab
 const lab = exports.lab = Lab.script();
@@ -21,14 +37,14 @@ describe('Manager', () => {
     let manager = null;
     before((done) => {
 
-        const options = Utils.getOpts();
+        const options = Config.options;
         manager = new Manager(options);
         manager.connect((err) => {
 
             expect(err).to.not.exist();
             expect(manager.dbs.test_db.tables.product).to.be.an.object();
             const table = manager.dbs.test_db.tables.product;
-            table.insertMany(Utils.records, {}, (err, inserted) => {
+            table.insertMany(Data.records, {}, (err, inserted) => {
 
                 expect(err).to.not.exist();
                 done();
@@ -57,7 +73,7 @@ describe('Manager', () => {
 
     it('should return an error on connect method due to invalid database', (done) => {
 
-        const options = Utils.getOpts();
+        const options = Config.options;
         options.dbOpts.host = 'invalid';
         const mgr = new Manager(options);
 
