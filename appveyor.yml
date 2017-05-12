@@ -1,8 +1,11 @@
 platform:
   - x64
 
+os: 
+  - Visual Studio 2015
+
 services:
-  - mssql2008r2sp2
+  - SQL2012SP1
 
 cache:
   - node_modules
