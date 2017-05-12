@@ -17,6 +17,7 @@ $tcp.Alter()
 $config = @{
   dbOpts = @{
     instanceName = "SQL2016"
+    dialect = "mssql"
     host = "localhost"
     username = "sa"
     password = "Password12!"
