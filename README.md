@@ -1,6 +1,6 @@
 # sequelize-wrapper
 [![build status](https://travis-ci.org/simon-p-r/sequelize-wrapper.svg?branch=master)](https://travis-ci.org/simon-p-r/sequelize-wrapper)
-[![Windows build status](https://ci.appveyor.com/api/project/simon-p-r/sequelize-wrapper/branch/master?svg=true)](https://ci.appveyor.com/project/simon-p-r/sequelize-wrapper)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/esyqmk1osp7n7om0?svg=true)](https://ci.appveyor.com/project/simon-p-r/sequelize-wrapper)
 
 [![Current Version](https://img.shields.io/npm/v/sequelize-wrapper.svg?maxAge=1000)](https://www.npmjs.com/package/sequelize-wrapper)
 [![dependency Status](https://img.shields.io/david/simon-p-r/sequelize-wrapper.svg?maxAge=1000)](https://david-dm.org/simon-p-r/sequelize-wrapper)
