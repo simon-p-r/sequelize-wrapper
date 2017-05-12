@@ -36,7 +36,6 @@ describe('Manager', () => {
 
     const Data = require('./data/array');
 
-    
     before((done) => {
 
         const options = Config.options;
