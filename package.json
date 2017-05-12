@@ -8,8 +8,6 @@
   },
   "scripts": {
     "coveralls": "lab -r lcov | coveralls",
-    "pretest": "echo create database test_db2 | psql -U postgres",
-    "posttest": "echo drop database test_db; drop database test_db2; | psql -U postgres",
     "test-pgsql": "cross-env DIALECT=postgres npm test",
     "test-mssql": "cross-env DIALECT=mssql npm test",
     "test": "lab -a code -v -t 80 -L -m 4000"
