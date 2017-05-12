@@ -10,7 +10,7 @@
     "coveralls": "lab -r lcov | coveralls",
     "test-pgsql": "cross-env DIALECT=postgres npm test",
     "test-mssql": "cross-env DIALECT=mssql npm test",
-    "test": "lab -a code -v -t 80 -L -m 4000"
+    "test": "lab -a code -v -t 80 -L -m 4000 -I __core-js_shared__"
   },
   "keywords": [
     "sql",

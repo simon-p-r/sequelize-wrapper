@@ -27,3 +27,7 @@ before_test:
 test_script:
   - npm run test-mssql
 
+after_test:
+  - set COVERALLS_SERVICE_NAME="appveyor"
+  - set COVERALLS_REPO_TOKEN="WF1TGKoWggEDZNCMbnalZay/QipPRhXiyh3zl9t3E42L5+HGHjXVHpowQbxLyCtG" 
+  - npm run coveralls
