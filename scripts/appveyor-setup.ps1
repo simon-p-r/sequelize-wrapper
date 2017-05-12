@@ -6,17 +6,17 @@ Start-Service sqlbrowser
 [reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.SqlWmiManagement") | Out-Null
 
 $wmi = New-Object('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
-$tcp = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerInstance[@Name='SQL2012']/ServerProtocol[@Name='Tcp']")
+$tcp = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerInstance[@Name='SQL2016']/ServerProtocol[@Name='Tcp']")
 $tcp.IsEnabled = $true
 $tcp.Alter()
 
 $wmi = New-Object('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
-$ipall = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerInstance[@Name='SQL2012']/ServerProtocol[@Name='Tcp']/IPAddress[@Name='IPAll']")
+$ipall = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerInstance[@Name='SQL2016']/ServerProtocol[@Name='Tcp']/IPAddress[@Name='IPAll']")
 $port = $ipall.IPAddressProperties.Item("TcpDynamicPorts").Value
 
 $config = @{
   dbOpts = @{
-    instanceName = "SQL2012"
+    instanceName = "SQL2016"
     host = "localhost"
     username = "sa"
     password = "Password12!"
