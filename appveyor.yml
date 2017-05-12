@@ -5,7 +5,7 @@ os:
   - Visual Studio 2015
 
 services:
-  - SQL2016
+  - mssql2016
 
 cache:
   - node_modules
