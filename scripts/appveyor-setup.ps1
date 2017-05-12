@@ -10,9 +10,6 @@ $tcp = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerIns
 $tcp.IsEnabled = $true
 $tcp.Alter()
 
-# $wmi = New-Object('Microsoft.SqlServer.Management.Smo.Wmi.ManagedComputer')
-# $ipall = $wmi.GetSmoObject("ManagedComputer[@Name='${env:computername}']/ServerInstance[@Name='SQL2016']/ServerProtocol[@Name='Tcp']/IPAddress[@Name='IPAll']")
-# $port = $ipall.IPAddressProperties.Item("TcpDynamicPorts").Value
 
 $config = @{
   dbOpts = @{
@@ -68,7 +65,7 @@ $config = @{
             primaryKey = $True
           }
           capital_city = @{
-            type = "string"
+            type = "text"
           }
           language = @{
             type = "string"
