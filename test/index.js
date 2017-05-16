@@ -105,7 +105,7 @@ describe('Manager', () => {
 
     it('should test getTableSchema method', (done) => {
 
-        expect(manager.getTableSchema()).to.be.an.array().and.have.length(0);
+        expect(manager.getTableSchema()).to.not.exist();
         const tableSchema = manager.getTableSchema('test_db', 'product');
         expect(tableSchema).to.be.an.object();
         done();
