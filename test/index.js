@@ -89,6 +89,27 @@ describe('Manager', () => {
         });
     });
 
+    it('should test getDbNames method', (done) => {
+
+        expect(manager.getDbNames()).to.be.an.array().and.have.length(2);
+        done();
+    });
+
+
+    it('should test getTableNames method', (done) => {
+
+        expect(manager.getTableNames()).to.be.an.array().and.have.length(0);
+        expect(manager.getTableNames('test_db')).to.be.an.array().and.have.length(1);
+        done();
+    });
+
+    it('should test getTableSchema method', (done) => {
+
+        expect(manager.getTableSchema()).to.be.an.array().and.have.length(0);
+        const tableSchema = manager.getTableSchema('test_db', 'product');
+        expect(tableSchema).to.be.an.object();
+        done();
+    });
 
 
     it('should succeed when using insertOne method', (done) => {
