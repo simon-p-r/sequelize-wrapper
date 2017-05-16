@@ -95,7 +95,7 @@ $config = @{
           created_at = @{
             type = "datetime"
             length = 2
-            timestamp = true
+            timestamp = $True
           }
         }
       }

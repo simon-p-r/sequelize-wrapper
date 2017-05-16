@@ -28,15 +28,9 @@ describe('Manager', () => {
     }
     else {
         Config.options = require('./config/pgsql.json');
-    }
-
-    if (!Config.options.dbOpts.password.length) {
-        Config.options.dbOpts.password = process.env.PGPASSWORD;
-    }
-
-    if (!Config.options.dbOpts.password) {
-        console.error('Missing password for database');
-        process.exit(1);
+        if (!process.env.TRAVIS) {
+            Config.options.dbOpts.password = process.env.PGPASSWORD;
+        }
     }
 
     Config.options.dbOpts.logging = false;
