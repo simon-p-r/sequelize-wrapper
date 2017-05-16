@@ -1,6 +1,6 @@
 {
   "name": "sequelize-wrapper",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "sql models",
   "main": "lib/index.js",
   "directories": {
@@ -23,10 +23,10 @@
     "coveralls": "^2.13.1",
     "cross-env": "^5.0.0",
     "lab": "^13.0.4",
-    "pg": "^6.1.5"
+    "pg": "^6.2.2"
   },
   "dependencies": {
-    "joi": "^10.4.1",
+    "joi": "^10.4.2",
     "neo-async": "^2.1.0",
     "sequelize": "^3.30.4",
     "tedious": "^2.0.0"

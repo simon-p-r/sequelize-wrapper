@@ -73,8 +73,8 @@ $config = @{
             allowNull = $True
           }
           timezone = @{
-            type = "datetime"
-            length = 2
+            type = "string"
+            length = 10
           }
           latitude = @{
             type = "double"
@@ -91,6 +91,11 @@ $config = @{
           counter = @{
             type = "integer"
             autoIncrement = $True
+          }
+          created_at = @{
+            type = "datetime"
+            length = 2
+            timestamp = true
           }
         }
       }

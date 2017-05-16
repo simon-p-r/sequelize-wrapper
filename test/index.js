@@ -4,8 +4,6 @@ const Code = require('code');
 const Lab = require('lab');
 const Manager = require('../lib/index.js');
 
-const Utils = require('./utils');
-
 
 // Set-up lab
 const lab = exports.lab = Lab.script();
@@ -21,20 +19,28 @@ describe('Manager', () => {
     let manager = null;
 
     // Fixtures
+    const Data = require('./data/array');
+
+    // Config
     const Config = {};
-    if (process.env.DIALECT === 'postgres') {
-        Config.options = require('./config/pgsql.json');
-    }
-    else if (process.env.DIALECT === 'mssql') {
+    if (process.env.DIALECT === 'mssql') {
         Config.options = require('./config/mssql.json');
     }
     else {
-        Config.options = Utils.getOpts();
+        Config.options = require('./config/pgsql.json');
+    }
+
+    if (!Config.options.dbOpts.password.length) {
+        Config.options.dbOpts.password = process.env.PGPASSWORD;
+    }
+
+    if (!Config.options.dbOpts.password) {
+        console.error('Missing password for database');
+        process.exit(1);
     }
 
     Config.options.dbOpts.logging = false;
 
-    const Data = require('./data/array');
 
     before((done) => {
 
@@ -58,7 +64,11 @@ describe('Manager', () => {
         manager.dbs.test_db.tables.product.drop({}, (err, results) => {
 
             expect(err).to.not.exist();
-            manager.close(done);
+            manager.dbs.test_db2.tables.country.drop({}, (err, results2) => {
+
+                expect(err).to.not.exist();
+                manager.close(done);
+            });
         });
     });
 
@@ -193,10 +203,33 @@ describe('Manager', () => {
     it('should succeed when using deleteMany method', (done) => {
 
         const table = manager.dbs.test_db.tables.product;
-        table.deleteMany({}, (err, deleted) => {
+        table.deleteMany({}, (err) => {
 
             expect(err).to.not.exist();
-            // expect(deleted).to.exist();
+            done();
+        });
+    });
+
+    it('should not created timestamps unless configured', (done) => {
+
+        const table = manager.dbs.test_db2.tables.country;
+        const rec = {
+            name: 'United Kingdom',
+            capital_city: 'London',
+            language: 'English',
+            timezone: 'GMT',
+            latitude: 51.5085300,
+            longitude: -0.1257400,
+            eu_member: true,
+            pop_density_percent: 81.58,
+            created_at: Date.now()
+        };
+
+        table.insertOne(rec, {}, (err, inserted) => {
+
+            expect(err).to.not.exist();
+            expect(inserted.createdAt).to.not.exist();
+            expect(inserted.updatedAt).to.not.exist();
             done();
         });
     });

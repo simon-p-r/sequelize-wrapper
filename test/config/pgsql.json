@@ -47,8 +47,8 @@
                         "type": "double"
                     },
                     "timezone": {
-                        "type": "datetime",
-                        "length": 2
+                        "type": "string",
+                        "length": 10
                     },
                     "pop_density_percent": {
                         "type": "float"
@@ -71,7 +71,13 @@
                     },
                     "latitude": {
                         "type": "double"
+                    },
+                    "created_at": {
+                        "type": "datetime",
+                        "length": 2,
+                        "timestamp": true
                     }
+                    
                 }
             }
         }
