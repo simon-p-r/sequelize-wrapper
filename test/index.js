@@ -132,7 +132,7 @@ describe('Manager', () => {
         table.insertOne(rec, {}, (err, inserted) => {
 
             expect(err).to.exist();
-            expect(err.message).to.equal('Validation error');
+            expect(err.message).to.exist();
             expect(inserted).to.not.exist();
             done();
         });
@@ -157,7 +157,7 @@ describe('Manager', () => {
         table.insertMany([{ name: 'SSD', price: 150.00, quantity: 50 }, { name: 'HDD', price: 79.99, quantity: 200 }], {}, (err, inserted) => {
 
             expect(err).to.exist();
-            expect(err.message).to.equal('Validation error');
+            expect(err.message).to.exist();
             expect(inserted).to.not.exist();
             done();
         });
