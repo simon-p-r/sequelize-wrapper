@@ -115,10 +115,25 @@ describe('Manager', () => {
     it('should succeed when using insertOne method', (done) => {
 
         const table = manager.dbs.test_db.tables.product;
-        table.insertOne({ name: 'RAM', price: 50.00, quantity: 250 }, {}, (err, inserted) => {
+        const rec = { name: 'RAM', price: 50.00, quantity: 250 };
+        table.insertOne(rec, {}, (err, inserted) => {
 
             expect(err).to.not.exist();
             expect(inserted).to.exist();
+            done();
+        });
+
+    });
+
+    it('should fail when using insertOne method due to duplicate key', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        const rec = { name: 'RAM', price: 50.00, quantity: 250 };
+        table.insertOne(rec, {}, (err, inserted) => {
+
+            expect(err).to.exist();
+            expect(err.message).to.equal('Validation error');
+            expect(inserted).to.not.exist();
             done();
         });
 
@@ -132,6 +147,18 @@ describe('Manager', () => {
 
             expect(err).to.not.exist();
             expect(inserted).to.exist();
+            done();
+        });
+    });
+
+    it('should fail when using insertMany method', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.insertMany([{ name: 'SSD', price: 150.00, quantity: 50 }, { name: 'HDD', price: 79.99, quantity: 200 }], {}, (err, inserted) => {
+
+            expect(err).to.exist();
+            expect(err.message).to.equal('Validation error');
+            expect(inserted).to.not.exist();
             done();
         });
     });
