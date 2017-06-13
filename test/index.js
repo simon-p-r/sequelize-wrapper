@@ -58,7 +58,7 @@ describe('Manager', () => {
         manager.dbs.test_db.tables.product.drop({}, (err, results) => {
 
             expect(err).to.not.exist();
-            manager.dbs.test_db2.tables.country.drop({}, (err, results2) => {
+            manager.dbs.test_db2.tables.country.drop((err, results2) => {
 
                 expect(err).to.not.exist();
                 manager.close(done);
@@ -125,6 +125,33 @@ describe('Manager', () => {
 
     });
 
+    it('should succeed when using insertOne method with 2 arguments', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        const rec = { name: 'SOUND CARD', price: 30.00, quantity: 500 };
+        table.insertOne(rec, (err, inserted) => {
+
+            expect(err).to.not.exist();
+            expect(inserted).to.exist();
+            done();
+        });
+
+    });
+
+    it('should fail when using insertOne method due to invalid record object', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+
+        table.insertOne(null, (err, inserted) => {
+
+            expect(err).to.exist();
+            expect(err.message).to.exist();
+            expect(inserted).to.not.exist();
+            done();
+        });
+
+    });
+
     it('should fail when using insertOne method due to duplicate key', (done) => {
 
         const table = manager.dbs.test_db.tables.product;
@@ -136,6 +163,20 @@ describe('Manager', () => {
             expect(inserted).to.not.exist();
             done();
         });
+
+    });
+
+    it('should throw error when using insertOne method without callback', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        const rec = { name: 'RAM', price: 50.00, quantity: 250 };
+
+        expect(() => {
+
+            table.insertOne(rec, {});
+
+        }).to.throw(Error);
+        done();
 
     });
 
@@ -159,6 +200,55 @@ describe('Manager', () => {
             expect(err).to.exist();
             expect(err.message).to.exist();
             expect(inserted).to.not.exist();
+            done();
+        });
+    });
+
+    it('should throw error when using insertMany method without callback', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        const recs = [{ name: 'SSD', price: 150.00, quantity: 50 }, { name: 'HDD', price: 79.99, quantity: 200 }];
+
+        expect(() => {
+
+            table.insertMany(recs, {});
+
+        }).to.throw(Error);
+        done();
+
+    });
+
+    it('should succeed when using insertMany method with 2 parameters', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.insertMany([{ name: 'Optical Drive', price: 40.00, quantity: 150 }], (err, inserted) => {
+
+            expect(err).to.not.exist();
+            expect(inserted).to.exist();
+            done();
+        });
+
+    });
+
+    it('should fail when using insertMany method with incorrect first parameter', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.insertMany(null, (err, inserted) => {
+
+            expect(err).to.exist();
+            expect(inserted).to.not.exist();
+            done();
+        });
+
+    });
+
+    it('should succeed when using find method with just callback argument', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.find((err, records) => {
+
+            expect(err).to.not.exist();
+            expect(records).to.exist().and.to.be.an.array();
             done();
         });
     });
@@ -198,10 +288,32 @@ describe('Manager', () => {
         });
     });
 
+    it('should succeed when using findOne method with just callback argument', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.findOne((err, record) => {
+
+            expect(err).to.not.exist();
+            expect(record).to.be.an.object();
+            done();
+        });
+    });
+
     it('should succeed when using count method', (done) => {
 
         const table = manager.dbs.test_db.tables.product;
         table.count({}, (err, count) => {
+
+            expect(err).to.not.exist();
+            expect(count).to.be.a.number();
+            done();
+        });
+    });
+
+    it('should succeed when using count method with just callback argument', (done) => {
+
+        const table = manager.dbs.test_db.tables.product;
+        table.count((err, count) => {
 
             expect(err).to.not.exist();
             expect(count).to.be.a.number();

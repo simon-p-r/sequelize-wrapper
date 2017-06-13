@@ -1,0 +1,1 @@
+psql -U postgres -c "DROP DATABASE TEST_DB"

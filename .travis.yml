@@ -16,10 +16,12 @@ services:
 addons:
   - "9.6"
 
-
 before_script:
   - set
   - psql -c "CREATE DATABASE test_db2;" -U postgres
+
+script:
+  - npm run test-pgsql
 
 after_script:
   - npm run coveralls
